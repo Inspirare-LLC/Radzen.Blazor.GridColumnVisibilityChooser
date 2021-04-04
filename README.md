@@ -9,12 +9,12 @@ Install it in shared code project.
 
 Create the control like so:
 
-`<RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))"/>
-<RadzenGrid @ref="@grid"/>
+    <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))"/>
+    <RadzenGrid @ref="@grid"/>
 
-@code{
-  RadzenGrid<TItem> grid;
-}`
+    @code{
+      RadzenGrid<TItem> grid;
+    }
 
 # Contributions
 
