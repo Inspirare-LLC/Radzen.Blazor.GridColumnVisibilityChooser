@@ -5,6 +5,15 @@
     <RazorLangVersion>3.0</RazorLangVersion>
     <AssemblyName>Radzen.Blazor.GridColumnVisibilityChooser</AssemblyName>
     <RootNamespace>Radzen.Blazor.GridColumnVisibilityChooser</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Company>Inspirare, UAB</Company>
+    <Authors>Jonas Petraška, Inspirare, UAB</Authors>
+    <PackageProjectUrl>https://github.com/Inspirare-LLC/Radzen.Blazor.GridColumnVisibilityChooser</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Inspirare-LLC/Radzen.Blazor.GridColumnVisibilityChooser</RepositoryUrl>
+    <Description>Grid column visibility chooser for radzen blazor grid component.</Description>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+    <Version>1.0.0.1</Version>
   </PropertyGroup>
 
 
