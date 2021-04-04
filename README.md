@@ -16,6 +16,19 @@ Create the control like so:
       RadzenGrid<TItem> grid;
     }
 
+To set default column visibility, provide `GetDefaultVisibility` function as a parameter:
+
+    <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" GetDefaultVisibility="@((colName) => GetDefaultColumnVisibility(colName))"/>
+    
+    @code{
+        bool GetDefaultColumnVisibility(string colName)
+        {
+            return colName == "Test1" || colName == "Test2" ? false : true;
+        }
+    }
+    
+ Note: Don't use `Visible` parameter, then switching visibility of the column won't work.
+
 # Contributions
 
 Any contributions are welcome in the form of pull requests.
