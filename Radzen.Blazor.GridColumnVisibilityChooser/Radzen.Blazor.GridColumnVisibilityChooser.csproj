@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <RazorLangVersion>3.0</RazorLangVersion>
+    <AssemblyName>Radzen.Blazor.GridColumnVisibilityChooser</AssemblyName>
+    <RootNamespace>Radzen.Blazor.GridColumnVisibilityChooser</RootNamespace>
+  </PropertyGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.10" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.10" />
+    <PackageReference Include="Radzen.Blazor" Version="3.2.0" />
+  </ItemGroup>
+
+</Project>
