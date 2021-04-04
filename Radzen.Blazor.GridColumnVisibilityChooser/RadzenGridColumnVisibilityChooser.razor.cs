@@ -24,6 +24,8 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
         public IEnumerable<string> Columns { get; set; }
         public IEnumerable<string> VisibleColumns { get; set; }
 
+        bool _isInitialVisibilitySet { get; set; }
+
         protected override void OnAfterRender(bool firstRender)
         {
             if (Grid != null)
@@ -32,7 +34,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
                 Columns = Grid.ColumnsCollection.Select(x => String.IsNullOrEmpty(x.Title) ? x.Property : x.Title).ToList();
 
                 //Set default visibility
-                if (GetDefaultVisibility != null)
+                if (GetDefaultVisibility != null && !_isInitialVisibilitySet)
                 {
                     foreach (var col in Columns)
                     {
@@ -40,6 +42,11 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
                         Grid.ColumnsCollection.FirstOrDefault(x => x.Title == col || x.Property == col).Visible = GetDefaultVisibility(col);
                         #pragma warning restore BL0005 // Component parameter should not be set outside of its component.        
                     }
+
+                    _isInitialVisibilitySet = true;
+
+                    //Refresh parent component
+                    RefreshParentStateAction();
                 }
 
                 VisibleColumns = Grid.ColumnsCollection.Where(x => x.Visible).Select(x => String.IsNullOrEmpty(x.Title) ? x.Property : x.Title).ToList();
