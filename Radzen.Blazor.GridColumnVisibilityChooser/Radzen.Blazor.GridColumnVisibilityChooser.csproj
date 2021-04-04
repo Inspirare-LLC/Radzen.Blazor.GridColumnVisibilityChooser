@@ -11,9 +11,9 @@
     <PackageProjectUrl>https://github.com/Inspirare-LLC/Radzen.Blazor.GridColumnVisibilityChooser</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Inspirare-LLC/Radzen.Blazor.GridColumnVisibilityChooser</RepositoryUrl>
     <Description>Grid column visibility chooser for radzen blazor grid component.</Description>
-    <AssemblyVersion>1.0.0.1</AssemblyVersion>
-    <FileVersion>1.0.0.1</FileVersion>
-    <Version>1.0.0.1</Version>
+    <AssemblyVersion>1.0.0.2</AssemblyVersion>
+    <FileVersion>1.0.0.2</FileVersion>
+    <Version>1.0.0.2</Version>
   </PropertyGroup>
 
 
