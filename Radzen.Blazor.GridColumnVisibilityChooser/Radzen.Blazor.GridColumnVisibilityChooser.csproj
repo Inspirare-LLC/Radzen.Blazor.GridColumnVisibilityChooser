@@ -11,15 +11,16 @@
     <PackageProjectUrl>https://github.com/Inspirare-LLC/Radzen.Blazor.GridColumnVisibilityChooser</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Inspirare-LLC/Radzen.Blazor.GridColumnVisibilityChooser</RepositoryUrl>
     <Description>Grid column visibility chooser for radzen blazor grid component.</Description>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
-    <FileVersion>1.0.0.3</FileVersion>
-    <Version>1.0.0.3</Version>
+    <AssemblyVersion>1.0.0.6</AssemblyVersion>
+    <FileVersion>1.0.0.6</FileVersion>
+    <Version>1.0.0.6</Version>
   </PropertyGroup>
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.10" />
+    <PackageReference Include="Blazored.LocalStorage" Version="4.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="3.1.15" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="3.1.15" />
     <PackageReference Include="Radzen.Blazor" Version="3.2.0" />
   </ItemGroup>
 
