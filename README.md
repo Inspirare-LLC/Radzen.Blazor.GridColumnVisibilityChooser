@@ -1,6 +1,13 @@
 # Radzen.Blazor.GridColumnVisibilityChooser
 Column visibility chooser for Radzen Blazor
 
+# Breaking changes
+From version 1.0.0.4 functionality of preserving column visibility state is introduced.
+
+It is controlled by `IsPreserved` parameter. 
+
+For it to work, configuration must be done in `Startup.ConfigureServices` method as such: `services.ConfigureColumnVisibility();`. Failing to include this will result in exceptions.
+
 # Nuget package
 Available as nuget package at https://www.nuget.org/packages/Radzen.Blazor.GridColumnVisibilityChooser
 Install it in shared code project.
@@ -27,7 +34,20 @@ To set default column visibility, provide `GetDefaultVisibility` function as a p
         }
     }
     
- Note: Don't use `Visible` parameter, then switching visibility of the column won't work.
+Note: Don't use `Visible` parameter, then switching visibility of the column won't work.
+
+To preserve state across sessions with local storage, use:
+
+    <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
+    <RadzenGrid @ref="@grid"/>
+
+    @code{
+      RadzenGrid<TItem> grid;
+    }
+ 
+This will, on each column visibility change, save the state in local storage and load it the next time the page is loaded. Pages are identified uniquely by their relative url without query string.
+
+Note: When using `PreserveState` the `GetDefaultVisibility` is not invoked.
 
 # Contributions
 
