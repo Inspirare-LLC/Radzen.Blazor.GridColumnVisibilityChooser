@@ -28,6 +28,15 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
         [Parameter]
         public bool PreserveState { get; set; }
 
+        [Parameter]
+        public string SelectAllText { get; set; }
+
+        [Parameter]
+        public string SelectedItemsText { get; set; } = "items selected";
+
+        [Parameter]
+        public int MaxSelectedLabels { get; set; } = 4;
+
         [Inject]
         public NavigationManager NavigationManager { get; set; }
 

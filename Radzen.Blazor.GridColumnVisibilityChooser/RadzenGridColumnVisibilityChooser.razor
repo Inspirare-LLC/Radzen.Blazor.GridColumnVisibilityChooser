@@ -3,4 +3,5 @@
 <RadzenDropDown AllowClear="true" AllowFiltering="true" FilterCaseSensitivity="FilterCaseSensitivity.CaseInsensitive"
                 @bind-Value=@VisibleColumns Multiple="true" Placeholder="@Placeholder" Data=@Columns
                 Change=@(args => OnColumnVisibilityChanged(args)) Style="width:400px"
-                FilterOperator="StringFilterOperator.Contains" />
+                FilterOperator="StringFilterOperator.Contains" MaxSelectedLabels="@MaxSelectedLabels" 
+                SelectAllText="@SelectAllText" SelectedItemsText="@SelectedItemsText"/>
