@@ -55,7 +55,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
             if (Grid != null)
             {
                 //Collection initial data
-                Columns = Grid.ColumnsCollection.Select(x => String.IsNullOrEmpty(x.Title) ? x.Property : x.Title).ToList();
+                Columns = Grid.ColumnsCollection.Select(x => String.IsNullOrEmpty(x.Property) ? x.Title : x.Property).ToList();
 
                 //Check local storage and apply if found
                 if (PreserveState && !_isInitialVisibilitySet)
@@ -96,7 +96,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
                     RefreshParentStateAction();
                 }
 
-                VisibleColumns = Grid.ColumnsCollection.Where(x => x.Visible).Select(x => String.IsNullOrEmpty(x.Title) ? x.Property : x.Title).ToList();
+                VisibleColumns = Grid.ColumnsCollection.Where(x => x.Visible).Select(x => String.IsNullOrEmpty(x.Property) ? x.Title : x.Property).ToList();
                 InvokeAsync(StateHasChanged);
             }
         }
@@ -126,7 +126,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
                 if (PreserveState)
                     await PreserveColumnVisibility(Grid.ColumnsCollection.Select(x => new ColumnVisibility()
                     {
-                        ColumnName = String.IsNullOrEmpty(x.Title) ? x.Property : x.Title,
+                        ColumnName = String.IsNullOrEmpty(x.Property) ? x.Title : x.Property,
                         IsVisible = x.Visible
                     }));
             }
