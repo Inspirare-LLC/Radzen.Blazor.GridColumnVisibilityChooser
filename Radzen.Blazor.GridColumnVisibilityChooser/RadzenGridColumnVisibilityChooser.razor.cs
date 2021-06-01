@@ -43,8 +43,8 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
         [Inject]
         public ILocalStorageService LocalStorageService { get; set; }
 
-        public IEnumerable<string> Columns { get; set; }
-        public IEnumerable<string> VisibleColumns { get; set; }
+        public IEnumerable<Tuple<string, string>> Columns { get; private set; }
+        public IEnumerable<string> VisibleColumns { get; private set; }
 
         bool _isInitialVisibilitySet { get; set; }
 
@@ -55,7 +55,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
             if (Grid != null)
             {
                 //Collection initial data
-                Columns = Grid.ColumnsCollection.Select(x => String.IsNullOrEmpty(x.Property) ? x.Title : x.Property).ToList();
+                Columns = Grid.ColumnsCollection.Select(x => new Tuple<string, string>(String.IsNullOrEmpty(x.Property) ? x.Title : x.Property, x.Title)).ToList();
 
                 //Check local storage and apply if found
                 if (PreserveState && !_isInitialVisibilitySet)
@@ -86,7 +86,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
                     foreach (var col in Columns)
                     {
                         #pragma warning disable BL0005 // Component parameter should not be set outside of its component.
-                        Grid.ColumnsCollection.FirstOrDefault(x => x.Title == col || x.Property == col).Visible = GetDefaultVisibility(col);
+                        Grid.ColumnsCollection.FirstOrDefault(x => x.Title == col.Item2 || x.Property == col.Item1).Visible = GetDefaultVisibility(col.Item2);
                         #pragma warning restore BL0005 // Component parameter should not be set outside of its component.        
                     }
 
@@ -106,17 +106,17 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
             var converted = value as IEnumerable<string>;
             if (converted != null)
             {
-                var diff = Columns.Except(converted).ToList();
+                var diff = Columns.Where(x => !converted.Contains(x.Item1)).ToList();
 
                 foreach (var d in diff)
                     #pragma warning disable BL0005 // Component parameter should not be set outside of its component.
-                    Grid.ColumnsCollection.FirstOrDefault(x => x.Title == d || x.Property == d).Visible = false;
+                    Grid.ColumnsCollection.FirstOrDefault(x => x.Title == d.Item2 || x.Property == d.Item1).Visible = false;
                     #pragma warning restore BL0005 // Component parameter should not be set outside of its component.
 
-                var same = Columns.Intersect(converted).ToList();
+                var same = Columns.Where(x => converted.Contains(x.Item1)).ToList();
                 foreach (var s in same)
                     #pragma warning disable BL0005 // Component parameter should not be set outside of its component.
-                    Grid.ColumnsCollection.FirstOrDefault(x => x.Title == s || x.Property == s).Visible = true;
+                    Grid.ColumnsCollection.FirstOrDefault(x => x.Title == s.Item2 || x.Property == s.Item1).Visible = true;
                     #pragma warning restore BL0005 // Component parameter should not be set outside of its component.
 
                 //Refresh parent component

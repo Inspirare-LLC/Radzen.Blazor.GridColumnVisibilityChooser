@@ -4,4 +4,5 @@
                 @bind-Value=@VisibleColumns Multiple="true" Placeholder="@Placeholder" Data=@Columns
                 Change=@(args => OnColumnVisibilityChanged(args)) Style="width:400px"
                 FilterOperator="StringFilterOperator.Contains" MaxSelectedLabels="@MaxSelectedLabels" 
-                SelectAllText="@SelectAllText" SelectedItemsText="@SelectedItemsText"/>
+                SelectAllText="@SelectAllText" SelectedItemsText="@SelectedItemsText" 
+                ValueProperty="Item1" TextProperty="Item2"/>
