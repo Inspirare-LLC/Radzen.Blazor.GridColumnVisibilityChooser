@@ -2,6 +2,9 @@
 Column visibility chooser for Radzen Blazor
 
 # Breaking changes
+
+From version 2.0.0.0 `RadzenGrid` has been replaced with `RadzenDataGrid`.
+
 From version 1.0.0.4 functionality of preserving column visibility state is introduced.
 
 It is controlled by `IsPreserved` parameter. 
