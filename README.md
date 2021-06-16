@@ -20,10 +20,10 @@ Install it in shared code project.
 Create the control like so:
 
     <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))"/>
-    <RadzenGrid @ref="@grid"/>
+    <RadzenDataGrid @ref="@grid"/>
 
     @code{
-      RadzenGrid<TItem> grid;
+      RadzenDataGrid<TItem> grid;
     }
 
 To set default column visibility, provide `GetDefaultVisibility` function as a parameter:
@@ -42,10 +42,10 @@ Note: Don't use `Visible` parameter, then switching visibility of the column won
 To preserve state across sessions with local storage, use:
 
     <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
-    <RadzenGrid @ref="@grid"/>
+    <RadzenDataGrid @ref="@grid"/>
 
     @code{
-      RadzenGrid<TItem> grid;
+      RadzenDataGrid<TItem> grid;
     }
  
 This will, on each column visibility change, save the state in local storage and load it the next time the page is loaded. Pages are identified uniquely by their relative url without query string.
