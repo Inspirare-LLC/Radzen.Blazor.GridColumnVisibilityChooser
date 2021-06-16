@@ -14,7 +14,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
     public partial class RadzenGridColumnVisibilityChooser<TItem>
     {
         [Parameter]
-        public RadzenGrid<TItem> Grid { get; set; }
+        public RadzenDataGrid<TItem> Grid { get; set; }
 
         [Parameter]
         public Action RefreshParentStateAction { get; set; }
