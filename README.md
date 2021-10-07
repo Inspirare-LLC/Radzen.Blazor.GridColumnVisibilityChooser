@@ -17,7 +17,7 @@ Install it in shared code project.
 
 # Usage
 
-Create the control like so:
+**Create the control like so:**
 
     <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))"/>
     <RadzenDataGrid @ref="@grid"/>
@@ -26,7 +26,7 @@ Create the control like so:
       RadzenDataGrid<TItem> grid;
     }
 
-To set default column visibility, provide `GetDefaultVisibility` function as a parameter:
+**To set default column visibility, provide `GetDefaultVisibility` function as a parameter:**
 
     <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" GetDefaultVisibility="@((colName) => GetDefaultColumnVisibility(colName))"/>
     
@@ -39,7 +39,7 @@ To set default column visibility, provide `GetDefaultVisibility` function as a p
     
 Note: Don't use `Visible` parameter, then switching visibility of the column won't work.
 
-To preserve state across sessions with local storage, use:
+**To preserve state across sessions with local storage, use:**
 
     <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
     <RadzenDataGrid @ref="@grid"/>
@@ -51,6 +51,21 @@ To preserve state across sessions with local storage, use:
 This will, on each column visibility change, save the state in local storage and load it the next time the page is loaded. Pages are identified uniquely by their relative url without query string.
 
 Note: When using `PreserveState` the `GetDefaultVisibility` is not invoked.
+
+**To use column visibility chooser preserve state feature with more than one Grid in one page, assing `id` (html id) to each Grid:**
+
+```
+<RadzenGridColumnVisibilityChooser Grid="@grid1" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
+<RadzenDataGrid @ref="@grid1" id="grid1Id"/>
+
+<RadzenGridColumnVisibilityChooser Grid="@grid2" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
+<RadzenDataGrid @ref="@grid2" id="grid2Id"/>
+
+@code{
+  RadzenDataGrid<TItem> grid1;
+  RadzenDataGrid<TItem> grid2;
+}
+```
 
 # Contributions
 
