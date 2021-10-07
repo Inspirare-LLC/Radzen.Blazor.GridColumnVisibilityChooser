@@ -139,6 +139,8 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
         public async Task<IEnumerable<ColumnVisibility>> GetPreservedColumnVisibility()
         {
             var identifier = GetPageIdentifier();
+            var htmlId = GetGridIdentifier();
+
             var containsKey = await LocalStorageService.ContainKeyAsync(ColumnVisibilityLocalStorageIdentifier);
 
             if (!containsKey)
@@ -148,7 +150,8 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
             if (visibilities == null || !visibilities.Any())
                 return new List<ColumnVisibility>();
 
-            var pageVisibilities = visibilities.FirstOrDefault(x => x.PageIdentifier == identifier);
+            var pageVisibilities = visibilities.FirstOrDefault(x => x.PageIdentifier == identifier &&
+                                                                    x.HtmlId == htmlId);
             if (pageVisibilities == null)
                 return new List<ColumnVisibility>();
 
@@ -163,25 +166,28 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
         public async Task PreserveColumnVisibility(IEnumerable<ColumnVisibility> visibilities)
         {
             var identifier = GetPageIdentifier();
+            var htmlId = GetGridIdentifier();
+
             var containsKey = await LocalStorageService.ContainKeyAsync(ColumnVisibilityLocalStorageIdentifier);
 
             List<ColumnsVisibility> data;
             if (containsKey)
             {
                 data = await LocalStorageService.GetItemAsync<List<ColumnsVisibility>>(ColumnVisibilityLocalStorageIdentifier);
-                var pageVisibility = data.FirstOrDefault(x => x.PageIdentifier == identifier);
+                var pageVisibility = data.FirstOrDefault(x => x.PageIdentifier == identifier && 
+                                                              x.HtmlId == htmlId);
 
                 //If page data is found, just update visibilities
                 if (pageVisibility != null)
                     data[data.IndexOf(pageVisibility)].Visibilities = visibilities;
                 //if it isn't, add new item
                 else
-                    data.Add(new ColumnsVisibility() { PageIdentifier = identifier, Visibilities = visibilities });
+                    data.Add(new ColumnsVisibility() { PageIdentifier = identifier, Visibilities = visibilities, HtmlId = htmlId });
             }
             else
                 data = new List<ColumnsVisibility>()
                 {
-                    new ColumnsVisibility(){ PageIdentifier = identifier, Visibilities = visibilities }
+                    new ColumnsVisibility(){ PageIdentifier = identifier, Visibilities = visibilities, HtmlId = htmlId }
                 };
 
             await LocalStorageService.SetItemAsync(ColumnVisibilityLocalStorageIdentifier, data);
@@ -215,6 +221,22 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
         {
             var relativeUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
             return relativeUrl.IndexOf("?") > -1 ? relativeUrl.Substring(0, relativeUrl.IndexOf("?")) : relativeUrl;
+        }
+
+        /// <summary>
+        /// Gets grid identifier, html id
+        /// </summary>
+        /// <returns>If id is provided via html attribute, return id, otherwise returns empty string.</returns>
+        public string GetGridIdentifier()
+        {
+            string htmlId = "";
+            //Get html id
+            if (Grid.Attributes != null &&
+                Grid.Attributes.TryGetValue("id", out var id) &&
+                !String.IsNullOrEmpty(Convert.ToString(id)))
+                htmlId = Convert.ToString(id);
+
+            return htmlId;
         }
     }
 }

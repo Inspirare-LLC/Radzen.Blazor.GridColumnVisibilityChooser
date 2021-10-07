@@ -8,6 +8,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser.Models
     public class ColumnsVisibility
     {
         public string PageIdentifier { get; set; }
+        public string HtmlId { get; set; }
 
         public IEnumerable<ColumnVisibility> Visibilities { get; set; }
     }
