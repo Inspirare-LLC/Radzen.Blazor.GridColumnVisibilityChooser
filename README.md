@@ -1,6 +1,8 @@
 # Radzen.Blazor.GridColumnVisibilityChooser
 Column visibility chooser for Radzen Blazor
 
+![Column visibility chooser for Radzen Blazor](https://user-images.githubusercontent.com/30466254/137726924-d586dc4d-ba20-41c4-86aa-016bc3a22528.png)
+
 # Breaking changes
 
 From version 2.0.0.0 `RadzenGrid` has been replaced with `RadzenDataGrid`.
