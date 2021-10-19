@@ -51,6 +51,8 @@ protected override void OnAfterRender(bool firstRender)
     
 Note: Don't use `Visible` parameter, then switching visibility of the column won't work.
 
+`colName` is `Title` on `RadzenDataGridColumn`.
+
 **To preserve state across sessions with local storage, use:**
 
     <Radzen.Blazor.GridColumnVisibilityChooser.RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
