@@ -21,16 +21,26 @@ Install it in shared code project.
 
 **Create the control like so:**
 
-    <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))"/>
+    <Radzen.Blazor.GridColumnVisibilityChooser.RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))"/>
     <RadzenDataGrid @ref="@grid"/>
 
     @code{
       RadzenDataGrid<TItem> grid;
     }
 
+It is required to call `InvokeAsync(StateHasChanged);` for the first render, if it is not called already while doing page initialisation:
+
+```
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+            InvokeAsync(StateHasChanged);
+    }
+```
+
 **To set default column visibility, provide `GetDefaultVisibility` function as a parameter:**
 
-    <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" GetDefaultVisibility="@((colName) => GetDefaultColumnVisibility(colName))"/>
+    <Radzen.Blazor.GridColumnVisibilityChooser.RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" GetDefaultVisibility="@((colName) => GetDefaultColumnVisibility(colName))"/>
     
     @code{
         bool GetDefaultColumnVisibility(string colName)
@@ -43,7 +53,7 @@ Note: Don't use `Visible` parameter, then switching visibility of the column won
 
 **To preserve state across sessions with local storage, use:**
 
-    <RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
+    <Radzen.Blazor.GridColumnVisibilityChooser.RadzenGridColumnVisibilityChooser Grid="@grid" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
     <RadzenDataGrid @ref="@grid"/>
 
     @code{
@@ -57,10 +67,10 @@ Note: When using `PreserveState` the `GetDefaultVisibility` is not invoked.
 **To use column visibility chooser preserve state feature with more than one Grid in one page, assing `id` (html id) to each Grid:**
 
 ```
-<RadzenGridColumnVisibilityChooser Grid="@grid1" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
+<Radzen.Blazor.GridColumnVisibilityChooser.RadzenGridColumnVisibilityChooser Grid="@grid1" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
 <RadzenDataGrid @ref="@grid1" id="grid1Id"/>
 
-<RadzenGridColumnVisibilityChooser Grid="@grid2" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
+<Radzen.Blazor.GridColumnVisibilityChooser.RadzenGridColumnVisibilityChooser Grid="@grid2" RefreshParentStateAction="@(() => InvokeAsync(StateHasChanged))" PreserveState="true"/>
 <RadzenDataGrid @ref="@grid2" id="grid2Id"/>
 
 @code{
