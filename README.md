@@ -31,11 +31,11 @@ Install it in shared code project.
 It is required to call `InvokeAsync(StateHasChanged);` for the first render, if it is not called already while doing page initialisation:
 
 ```
-    protected override void OnAfterRender(bool firstRender)
-    {
-        if (firstRender)
-            InvokeAsync(StateHasChanged);
-    }
+protected override void OnAfterRender(bool firstRender)
+{
+    if (firstRender)
+        InvokeAsync(StateHasChanged);
+}
 ```
 
 **To set default column visibility, provide `GetDefaultVisibility` function as a parameter:**
