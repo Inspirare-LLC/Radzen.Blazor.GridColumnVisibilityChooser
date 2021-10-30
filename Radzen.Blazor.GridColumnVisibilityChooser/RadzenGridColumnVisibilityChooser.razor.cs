@@ -52,7 +52,7 @@ namespace Radzen.Blazor.GridColumnVisibilityChooser
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            if (Grid != null)
+            if (Grid != null && !_isInitialVisibilitySet)
             {
                 //Collection initial data
                 Columns = Grid.ColumnsCollection.Select(x => new Tuple<string, string>(String.IsNullOrEmpty(x.Property) ? x.Title : x.Property, x.Title)).ToList();
