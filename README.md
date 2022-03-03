@@ -3,6 +3,13 @@ Column visibility chooser for Radzen Blazor
 
 ![Column visibility chooser for Radzen Blazor](https://user-images.githubusercontent.com/30466254/137726924-d586dc4d-ba20-41c4-86aa-016bc3a22528.png)
 
+# Important information
+
+As of `Radzen.Blazor` version `3.15.1` Radzen added a native support for column picker. It is recommended to use their column picker going forward.
+However, if any of the additional features, such as persistent mode, which enables saving column visibility between sessions, this library can still be used. 
+
+**I will continue to support the library the same way as before, nothing changes**
+
 # Breaking changes
 
 From version 2.0.0.0 `RadzenGrid` has been replaced with `RadzenDataGrid`.
