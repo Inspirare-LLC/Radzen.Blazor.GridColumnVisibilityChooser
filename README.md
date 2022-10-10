@@ -3,6 +3,9 @@ Column visibility chooser for Radzen Blazor
 
 ![Column visibility chooser for Radzen Blazor](https://user-images.githubusercontent.com/30466254/137726924-d586dc4d-ba20-41c4-86aa-016bc3a22528.png)
 
+# Depreciation notice
+With the newest updates from Radzen.Blazor everything that this package does can be achieved with "Column Picker" (https://blazor.radzen.com/datagrid-column-picker) and "Save/Load settings" (https://blazor.radzen.com/datagrid-save-settings) from the original creators "Radzen Team". Therefore, this repository becomes obsolete :) The only usage for this package, I see is if an upgrade to the newest "Razen.Blazor" nuget package is not possible.
+
 # Important information
 
 As of `Radzen.Blazor` version `3.15.1` Radzen added a native support for column picker. It is recommended to use their column picker going forward.
